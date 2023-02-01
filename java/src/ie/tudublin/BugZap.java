@@ -6,8 +6,9 @@ public class BugZap extends PApplet {
 	int viewWidth = 500;
 	int viewHeight = 500;
 
-	float playerWidth = 50;
-	float playerX = random(0, viewWidth);
+	int playerSpeed = 10;
+	float playerWidth = 40;
+	float playerX = random(0 + playerWidth, viewWidth - playerWidth);
 	float playerY = viewHeight - playerWidth;
 
 	public void settings() {
@@ -17,21 +18,6 @@ public class BugZap extends PApplet {
 	public void setup() {
 		colorMode(HSB);
 		background(0);
-
-		x1 = random(0, width);
-		x2 = random(0, width);
-		y1 = random(0, height);
-		y2 = random(0, height);
-
-		float range = 5;
-
-		x1dir = random(-range, range);
-		x2dir = random(-range, range);
-		y1dir = random(-range, range);
-		y2dir = random(-range, range);
-
-		smooth();
-
 	}
 
 	float x1, y1, x2, y2;
@@ -39,10 +25,25 @@ public class BugZap extends PApplet {
 	float c = 0;
 
 	public void draw() {
+		background(0);
 		drawPlayer(playerX, playerY, playerWidth);
 	}
 
 	public void drawPlayer(float x, float y, float w) {
 		rect(x, y, w, w);
+	}
+
+	public void keyPressed() {
+		if (keyCode == LEFT) {
+			if (playerX > 0)
+				playerX -= playerSpeed;
+		}
+		if (keyCode == RIGHT) {
+			if (playerX < (viewWidth - playerWidth))
+				playerX += playerSpeed;
+		}
+		if (key == ' ') {
+			System.out.println("SPACE key pressed");
+		}
 	}
 }
