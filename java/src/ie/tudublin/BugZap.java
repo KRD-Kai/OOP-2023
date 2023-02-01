@@ -7,7 +7,7 @@ public class BugZap extends PApplet {
 	int viewHeight = 500;
 
 	int playerSpeed = 10;
-	float playerWidth = 40;
+	float playerWidth = 30;
 	float playerX = random(0 + playerWidth, viewWidth - playerWidth);
 	float playerY = viewHeight - playerWidth;
 
@@ -35,7 +35,7 @@ public class BugZap extends PApplet {
 
 	public void keyPressed() {
 		if (keyCode == LEFT) {
-			if (playerX > 0)
+			if (playerX > 0 + playerSpeed)
 				playerX -= playerSpeed;
 		}
 		if (keyCode == RIGHT) {
