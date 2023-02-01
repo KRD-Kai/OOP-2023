@@ -7,8 +7,8 @@ public class BugZap extends PApplet {
 	int viewHeight = 500;
 
 	float playerWidth = 50;
-	float playerX = viewWidth / 2;
-	float playerY = 0;
+	float playerX = random(0, viewWidth);
+	float playerY = viewHeight - playerWidth;
 
 	public void settings() {
 		size(viewWidth, viewHeight);
@@ -39,28 +39,10 @@ public class BugZap extends PApplet {
 	float c = 0;
 
 	public void draw() {
-		strokeWeight(2);
-		stroke(c, 255, 255);
-		c = (c + 1f) % 255;
-		line(x1, y1, x2, y2);
+		drawPlayer(playerX, playerY, playerWidth);
+	}
 
-		x1 += x1dir;
-		x2 += x2dir;
-		y1 += y1dir;
-		y2 += y2dir;
-
-		if (x1 < 0 || x1 > width) {
-			x1dir = -x1dir;
-		}
-		if (y1 < 0 || y1 > height) {
-			y1dir = -y1dir;
-		}
-
-		if (x2 < 0 || x2 > width) {
-			x2dir = -x2dir;
-		}
-		if (y2 < 0 || y2 > height) {
-			y2dir = -y2dir;
-		}
+	public void drawPlayer(float x, float y, float w) {
+		rect(x, y, w, w);
 	}
 }
